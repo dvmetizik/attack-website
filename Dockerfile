@@ -32,12 +32,15 @@ RUN apt-get update --fix-missing && \
 
 WORKDIR /home/attackuser/attack-website
 
-# Copy the source code
+# Copy the requirements
 COPY . .
 
 # Install all Python dependencies
 RUN python3 -m pip install --no-cache-dir wheel && \
     python3 -m pip install --no-cache-dir -r requirements.txt
+
+# Copy the res
+COPY . .
 
 # Build the website
 RUN python3 update-attack.py --no-test-exitstatus
